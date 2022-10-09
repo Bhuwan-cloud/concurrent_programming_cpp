@@ -1,21 +1,19 @@
+
+//  atomic template is used for applying "one at a time pinciple to threads "
+
 #include <iostream>
 #include <thread>
 #include <vector>
-#include <mutex>
+#include <atomic>
 
 using namespace std;
 
-mutex gLock;
-
-static int shared_value = 0;
+//  w can update shared value by using atomic template by making a varible atomic
+static atomic<int> shared_value = 0;
 void shared_value_increment()
 {
-    //  lockguard is object of mutex class
-
-    lock_guard<mutex> locakGuard(gLock);
-
-    shared_value = shared_value + 1;
-
+    shared_value ++;
+    //  if we use shared_value = shared_value + 1;  we will get a deadlock or daa race 
 }
 
 int main()
