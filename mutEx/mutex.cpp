@@ -16,6 +16,7 @@ static int shared_value = 0;
 void shared_value_increment(){
     gLock.lock(); // gLock prevents the threads from accessing the common resources at single time ; it locks and then unlock
         shared_value = shared_value + 1;
+        //  we can have multiple shared values which all will be protected by mutex object "gLock"
     gLock.unlock();
 }
 
